@@ -5,7 +5,6 @@
 ## Build
 
 ```
-deno run --allow-read --allow-write build.js
 bash build.sh
 ```
 
