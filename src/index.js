@@ -269,7 +269,7 @@ function loadProblems() {
   fetch("data/problem.tsv").then(function (response) {
     return response.text();
   }).then(function (tsv) {
-    allProblems = tsv.split("\n").slice(0, -1).map((line) => {
+    allProblems = tsv.trim().split("\n").map((line) => {
       const [en, kuku, ja] = line.split("\t");
       return { en: en, kuku: kuku, ja: ja };
     });
