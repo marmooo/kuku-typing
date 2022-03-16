@@ -266,17 +266,17 @@ function loopVoice(text, n) {
 }
 
 function loadProblems() {
-  fetch("data/problem.tsv").then(function (response) {
-    return response.text();
-  }).then(function (tsv) {
-    allProblems = tsv.trim().split("\n").map((line) => {
-      const [en, kuku, ja] = line.split("\t");
-      return { en: en, kuku: kuku, ja: ja };
+  fetch("data/problem.tsv")
+    .then((response) => response.text())
+    .then((tsv) => {
+      allProblems = tsv.trim().split("\n").map((line) => {
+        const [en, kuku, ja] = line.split("\t");
+        return { en: en, kuku: kuku, ja: ja };
+      });
+      problems = allProblems.slice(0, 9);
+    }).catch(function (err) {
+      console.error(err);
     });
-    problems = allProblems.slice(0, 9);
-  }).catch(function (err) {
-    console.error(err);
-  });
 }
 
 function fixTypeStyle(currNode, word, sound) {
