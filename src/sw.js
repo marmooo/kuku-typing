@@ -1,4 +1,4 @@
-var CACHE_NAME = "2022-03-30 08:30";
+var CACHE_NAME = "2022-04-05 00:10";
 var urlsToCache = [
   "/kuku-typing/",
   "/kuku-typing/index.js",
