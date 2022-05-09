@@ -1,4 +1,4 @@
-var CACHE_NAME = "2022-04-14 08:15";
+var CACHE_NAME = "2022-05-10 08:50";
 var urlsToCache = [
   "/kuku-typing/",
   "/kuku-typing/index.js",
@@ -7,7 +7,7 @@ var urlsToCache = [
   "/kuku-typing/mp3/correct.mp3",
   "/kuku-typing/mp3/end.mp3",
   "/kuku-typing/mp3/keyboard.mp3",
-  "/kuku-typing/favicon/original.svg",
+  "/kuku-typing/favicon/favicon.svg",
   "https://marmooo.github.io/fonts/textar-light.woff2",
   "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
   "https://cdn.jsdelivr.net/npm/simple-keyboard@3.4.52/build/index.min.js",
