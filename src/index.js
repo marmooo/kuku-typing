@@ -535,7 +535,7 @@ function typeEventKey(key) {
     switch (key) {
       case "NonConvert":
         [...romaNode.children].forEach((span) => {
-          span.classList.remove("d-none");
+          span.style.visibility = "visible";
         });
         downTime(5);
         break;
