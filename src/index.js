@@ -71,10 +71,10 @@ const keyboardDisplay = {
 const simpleKeyboard = new SimpleKeyboard.default({
   layout: (navigator.language == "ja") ? layout109 : layout104,
   display: keyboardDisplay,
-  onInit: function () {
+  onInit: () => {
     document.getElementById("keyboard").classList.add("d-none");
   },
-  onKeyPress: function (input) {
+  onKeyPress: (input) => {
     switch (input) {
       case "{esc}":
         return typeEventKey("Escape");
@@ -236,13 +236,13 @@ function loadAudios() {
 
 function loadVoices() {
   // https://stackoverflow.com/questions/21513706/
-  const allVoicesObtained = new Promise(function (resolve) {
+  const allVoicesObtained = new Promise((resolve) => {
     let voices = speechSynthesis.getVoices();
     if (voices.length !== 0) {
       resolve(voices);
     } else {
       let supported = false;
-      speechSynthesis.addEventListener("voiceschanged", function () {
+      speechSynthesis.addEventListener("voiceschanged", () => {
         supported = true;
         voices = speechSynthesis.getVoices();
         resolve(voices);
@@ -284,7 +284,7 @@ function loadProblems() {
         return { en: en, kuku: kuku, ja: ja };
       });
       problems = allProblems.slice(0, 9);
-    }).catch(function (err) {
+    }).catch((err) => {
       console.error(err);
     });
 }
@@ -688,7 +688,7 @@ function countdown() {
   gamePanel.classList.add("d-none");
   countPanel.classList.remove("d-none");
   counter.textContent = 3;
-  const timer = setInterval(function () {
+  const timer = setInterval(() => {
     const counter = document.getElementById("counter");
     const colors = ["skyblue", "greenyellow", "violet", "tomato"];
     if (parseInt(counter.textContent) > 1) {
@@ -722,7 +722,7 @@ function countdown() {
 
 function startTypeTimer() {
   const timeNode = document.getElementById("time");
-  typeTimer = setInterval(function () {
+  typeTimer = setInterval(() => {
     const arr = timeNode.textContent.split("秒 /");
     const t = parseInt(arr[0]);
     if (t > 0) {
@@ -764,7 +764,7 @@ function setProblems() {
   }
 }
 
-gradeOption.addEventListener("change", function () {
+gradeOption.addEventListener("change", () => {
   initTime();
   clearInterval(typeTimer);
 });
@@ -801,7 +801,7 @@ resizeFontSize(aa);
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
 document.getElementById("toggleBGM").onclick = toggleBGM;
 document.getElementById("virtualKeyboard").onclick = toggleKeyboard;
-window.addEventListener("resize", function () {
+window.addEventListener("resize", () => {
   resizeFontSize(aa);
 });
 document.getElementById("mode").onclick = changeMode;
