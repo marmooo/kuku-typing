@@ -775,6 +775,7 @@ function scoring() {
   infoPanel.classList.remove("d-none");
   playPanel.classList.add("d-none");
   countPanel.classList.add("d-none");
+  aaOuter.classList.add("d-none");
   scorePanel.classList.remove("d-none");
   let time = parseInt(document.getElementById("time").textContent);
   if (time < gameTime) {
