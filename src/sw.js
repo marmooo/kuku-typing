@@ -1,4 +1,4 @@
-const CACHE_NAME = "2024-03-16 10:30";
+const CACHE_NAME = "2024-05-01 01:20";
 const urlsToCache = [
   "/kuku-typing/",
   "/kuku-typing/index.js",
@@ -9,7 +9,6 @@ const urlsToCache = [
   "/kuku-typing/mp3/keyboard.mp3",
   "/kuku-typing/favicon/favicon.svg",
   "https://marmooo.github.io/fonts/textar-light.woff2",
-  "https://cdn.jsdelivr.net/npm/simple-keyboard@3.4.52/build/index.min.js",
 ];
 
 self.addEventListener("install", (event) => {
