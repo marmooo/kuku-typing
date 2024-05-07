@@ -342,7 +342,8 @@ function typeEvent(event) {
     case "Space":
       event.preventDefault();
       // falls through
-    default: typeEventKey(event.key);
+    default:
+      typeEventKey(event.key);
   }
 }
 
@@ -527,6 +528,7 @@ function countdown() {
   if (countdowning) return;
   countdowning = true;
   normalCount = errorCount = solveCount = 0;
+  if (localStorage.getItem("bgm") == 1) bgm.play();
   document.getElementById("guideSwitch").disabled = true;
   document.getElementById("virtualKeyboard").disabled = true;
   gamePanel.classList.add("d-none");
@@ -557,9 +559,6 @@ function countdown() {
       });
       typable();
       startTypeTimer();
-      if (localStorage.getItem("bgm") == 1) {
-        bgm.play();
-      }
     }
   }, 1000);
 }
