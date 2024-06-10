@@ -350,18 +350,13 @@ function typeEvent(event) {
 function typeEventKey(key) {
   switch (key) {
     case "NonConvert": {
-      const visibility = "visible";
-      const children = romaNode.children;
-      children[1].style.visibility = visibility;
-      children[2].style.visibility = visibility;
+      changeVisibility("visible");
       downTime(5);
       return;
     }
-    case "Convert": {
-      const text = romaNode.textContent;
-      loopVoice(text, 1);
+    case "Convert":
+      loopVoice(problem.roma, 1);
       return;
-    }
     case "Shift":
     case "CapsLock":
       if (guide) {
@@ -484,6 +479,13 @@ function shuffle(array) {
   return array;
 }
 
+function changeVisibility(visibility) {
+  const children = romaNode.children;
+  children[1].style.visibility = visibility;
+  children[2].style.visibility = visibility;
+  japanese.style.visibility = visibility;
+}
+
 function typable() {
   if (solveCount >= 9) {
     speechSynthesis.cancel();
@@ -507,8 +509,7 @@ function typable() {
 
     if (mode.textContent == "EASY") loopVoice(problem.en, 1);
     const visibility = (mode.textContent == "EASY") ? "visible" : "hidden";
-    children[1].style.visibility = visibility;
-    children[2].style.visibility = visibility;
+    changeVisibility(visibility);
     resizeFontSize(aa);
     if (guide) {
       if (prevProblem) {
@@ -627,11 +628,15 @@ function scoring() {
 }
 
 function changeMode(event) {
+  normalCount = errorCount = solveCount = 0;
+  document.getElementById("time").textContent = gameTime;
   if (event.target.textContent == "EASY") {
     event.target.textContent = "HARD";
   } else {
     event.target.textContent = "EASY";
   }
+  const visibility = (mode.textContent == "EASY") ? "visible" : "hidden";
+  changeVisibility(visibility);
 }
 
 loadProblems();
