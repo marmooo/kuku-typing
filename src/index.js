@@ -3,7 +3,6 @@ import { Romaji } from "https://cdn.jsdelivr.net/npm/@marmooo/romaji/+esm";
 
 const remSize = parseInt(getComputedStyle(document.documentElement).fontSize);
 const gamePanel = document.getElementById("gamePanel");
-const playPanel = document.getElementById("playPanel");
 const infoPanel = document.getElementById("infoPanel");
 const countPanel = document.getElementById("countPanel");
 const scorePanel = document.getElementById("scorePanel");
@@ -442,7 +441,6 @@ function startGame() {
   initTime();
   countdown();
   setProblems();
-  aaOuter.classList.remove("d-none");
   countPanel.classList.remove("d-none");
   scorePanel.classList.add("d-none");
 }
@@ -480,7 +478,7 @@ function resizeFontSize(node) {
   const font = style.fontFamily;
   const fontSize = parseFloat(style.fontSize);
   const lineHeight = parseFloat(style.lineHeight) / fontSize;
-  const nodeHeight = document.getElementById("aaOuter").offsetHeight;
+  const nodeHeight = globalThis.innerHeight - 360;
   const nodeWidth = infoPanel.clientWidth;
   const nodeRect = [nodeWidth, nodeHeight];
   const textRect = getTextRect(node.textContent, fontSize, font, lineHeight);
@@ -561,6 +559,7 @@ function countdown() {
   document.getElementById("guideSwitch").disabled = true;
   document.getElementById("virtualKeyboard").disabled = true;
   gamePanel.classList.add("d-none");
+  infoPanel.classList.add("d-none");
   countPanel.classList.remove("d-none");
   counter.textContent = 3;
   const timer = setInterval(() => {
@@ -581,7 +580,6 @@ function countdown() {
       gamePanel.classList.remove("d-none");
       countPanel.classList.add("d-none");
       infoPanel.classList.remove("d-none");
-      playPanel.classList.remove("d-none");
       scorePanel.classList.add("d-none");
       resizeFontSize(aa);
       globalThis.scrollTo({
@@ -643,9 +641,8 @@ gradeOption.addEventListener("change", () => {
 function scoring() {
   playing = false;
   infoPanel.classList.remove("d-none");
-  playPanel.classList.add("d-none");
+  gamePanel.classList.add("d-none");
   countPanel.classList.add("d-none");
-  aaOuter.classList.add("d-none");
   scorePanel.classList.remove("d-none");
   let time = parseInt(document.getElementById("time").textContent);
   if (time < gameTime) {
