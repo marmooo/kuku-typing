@@ -1,5 +1,6 @@
 import simpleKeyboard from "https://cdn.jsdelivr.net/npm/simple-keyboard@3.7.77/+esm";
 import { Romaji } from "https://cdn.jsdelivr.net/npm/@marmooo/romaji/+esm";
+import { hiraToRoma } from "https://cdn.jsdelivr.net/npm/hiraroma/+esm";
 
 const remSize = parseInt(getComputedStyle(document.documentElement).fontSize);
 const gamePanel = document.getElementById("gamePanel");
@@ -317,8 +318,8 @@ function loadProblems() {
     .then((response) => response.text())
     .then((tsv) => {
       allProblems = tsv.trim().split("\n").map((line) => {
-        const [en, kuku, ja] = line.split("\t");
-        return { en: en, kuku: kuku, ja: ja };
+        const [kuku, ja] = line.split("\t");
+        return { roma: hiraToRoma(ja), kuku: kuku, ja: ja };
       });
       problems = allProblems.slice(0, 9);
     }).catch((err) => {
@@ -536,22 +537,21 @@ function typable() {
     problem = problems[solveCount];
     aa.textContent = problem.kuku;
     japaneseNode.textContent = problem.ja;
-    const roma = problem.en.split(" ")[1];
-    const romaji = new Romaji(roma);
-    problem.roma = roma;
+    const romaji = new Romaji(problem.ja.replace(/\s/g, ""));
     problem.romaji = romaji;
     const children = romaNode.children;
     children[0].textContent = romaji.inputedRomaji;
     children[1].textContent = romaji.remainedRomaji[0];
     children[2].textContent = romaji.remainedRomaji.slice(1);
 
-    if (mode.textContent == "EASY") loopVoice(problem.en, 1);
+    if (mode.textContent == "EASY") loopVoice(problem.roma, 1);
     const visibility = (mode.textContent == "EASY") ? "visible" : "hidden";
     changeVisibility(visibility);
     resizeFontSize(aa);
     if (guide) {
       removePrevGuide(prevProblem);
-      showGuide(problem.roma[0]);
+      const nextKey = problem.romaji.currentNode.children.keys().next().value;
+      showGuide(nextKey);
     }
   }
 }
