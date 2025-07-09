@@ -298,7 +298,7 @@ function loadVoices() {
   });
 }
 
-function loopVoice(text, n) {
+function speak(text) {
   speechSynthesis.cancel();
   text = text // 英語を綺麗に発音
     .replace(/si/g, "shi")
@@ -308,9 +308,7 @@ function loopVoice(text, n) {
   const msg = new globalThis.SpeechSynthesisUtterance(text);
   msg.voice = englishVoices[Math.floor(Math.random() * englishVoices.length)];
   msg.lang = "en-US";
-  for (let i = 0; i < n; i++) {
-    speechSynthesis.speak(msg);
-  }
+  speechSynthesis.speak(msg);
 }
 
 function loadProblems() {
@@ -394,7 +392,7 @@ function typeEventKey(key) {
       return;
     }
     case "Convert":
-      loopVoice(problem.roma, 1);
+      speak(problem.roma);
       return;
     case "Shift":
     case "CapsLock":
@@ -544,7 +542,7 @@ function typable() {
     children[1].textContent = romaji.remainedRomaji[0];
     children[2].textContent = romaji.remainedRomaji.slice(1);
 
-    if (mode.textContent == "EASY") loopVoice(problem.roma, 1);
+    if (mode.textContent == "EASY") speak(problem.roma);
     const visibility = (mode.textContent == "EASY") ? "visible" : "hidden";
     changeVisibility(visibility);
     resizeFontSize(aa);
