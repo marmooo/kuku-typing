@@ -21,11 +21,7 @@
       gtag('config', 'G-F2179JXDYY');
     </script>
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/kuku-typing/sw.js');
-        });
-      }
+      navigator.serviceWorker.register("/kuku-typing/sw.js");
     </script>
     <link rel="icon" type="image/png" href="/kuku-typing/favicon/favicon.png">
     <link rel="icon" type="image/svg+xml" href="/kuku-typing/favicon/favicon.svg">
